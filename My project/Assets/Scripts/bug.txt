@@ -12,3 +12,11 @@ and the player?
 objects being detected by the ripple effect sometimes dont turn to invisible again
 --the script used to turn the objects detected is the ripple script and the ripple object is destroyed before
 the detected objects are destroy, which basically destroy the script which stop it from turning invisible again
+
+
+things to do
+fix visibility
+fix player route (clamp)
+implement the score system
+create text effect when scoring +1 +5 shining** glwing* 
+sound effect

@@ -1,0 +1,6 @@
+Layer Order:
+-10 - Main Camera
+-1  - Path tiles
+0   - Walls, Ripples, Items, Obstacles
+1   - player
+2   - UI

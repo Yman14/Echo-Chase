@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Initialize UI
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
         energySlider.value = energy;
     }
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         // Increase score
         score += amount;
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
 
         // Replenish energy
         ReplenishEnergy(energyReplenishRate);
