@@ -8,6 +8,7 @@ TagManager:
   - Items
   - Obstacles
   - TilePath
+  - Ripple
   layers:
   - Default
   - TransparentFX

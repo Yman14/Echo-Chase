@@ -1,0 +1,24 @@
+using UnityEngine;
+
+public class HiddenObject : MonoBehaviour
+{
+    private SpriteRenderer spriteRenderer;
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Hide();
+    }
+
+    public void Reveal()
+    {
+        // Make the object visible
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+    }
+
+    public void Hide()
+    {
+        // Make the object fully transparent
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
+    }
+}

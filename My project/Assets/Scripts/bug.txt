@@ -1,0 +1,14 @@
+hidden objects are hidden by changing its color to black which is the same color to the background
+by having the same color of the background, it creates the effect of not being visible
+but if the hidden objects is placed on the tiles, which is not black, 
+then the hidden objects is now visible because its not real invisible but just colored black,
+which can be seen if the tiles is colored white or gray.
+
+if the player can only moved on the path tiles, then how big is the path and how big is the obstacles, items,
+and the player?
+
+
+
+objects being detected by the ripple effect sometimes dont turn to invisible again
+--the script used to turn the objects detected is the ripple script and the ripple object is destroyed before
+the detected objects are destroy, which basically destroy the script which stop it from turning invisible again

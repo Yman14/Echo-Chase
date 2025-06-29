@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("Game Over! Energy Depleted.");
+        //Debug.Log("Game Over! Energy Depleted.");
         //Game Over logic, restarting the game or showing a Game Over screen.
     }
 }

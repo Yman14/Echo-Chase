@@ -5,7 +5,7 @@ public class Ripple : MonoBehaviour
 {
     public float maxSize = 5f; // Maximum radius
     public float growSpeed = 2f; // Speed of ripple growth
-    public float visibilityDuration = 2f; // Time tiles remain visible
+    public float visibilityDuration = 4f; // Time tiles remain visible
 
     void Update()
     {
