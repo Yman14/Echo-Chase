@@ -9,7 +9,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         for (int i = 0; i < obstacleCount; i++)
         {
-            float xPosition = i * 2f; // Adjust spacing between obstacles
+            float xPosition = i * 1.5f; // Adjust spacing between obstacles
             float yPosition = Random.Range(-1f, 1f); // Slight vertical randomness
             Instantiate(obstaclePrefab, new Vector3(xPosition, yPosition, 0), Quaternion.identity);
         }
