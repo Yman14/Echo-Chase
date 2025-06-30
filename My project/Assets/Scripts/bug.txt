@@ -16,7 +16,8 @@ the detected objects are destroy, which basically destroy the script which stop 
 
 things to do
 fix visibility - done
-fix player route (clamp)
+fix player route (clamp)- done
 implement the score system
 create text effect when scoring +1 +5 shining** glwing* 
 sound effect
+generate level map
