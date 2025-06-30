@@ -4,7 +4,7 @@ public class Obstacle : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<SpriteRenderer>().color = Color.black;
+        //GetComponent<SpriteRenderer>().color = Color.black;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
