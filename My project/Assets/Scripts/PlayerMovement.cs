@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        pathManager = FindObjectOfType<PathManager>();
+        pathManager = FindAnyObjectByType<PathManager>();
         mainCamera = Camera.main; // Cache the main camera
         targetPosition = transform.position; // Initialize the target position
     }

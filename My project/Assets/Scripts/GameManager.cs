@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     // Energy Variables
     private float energy = 100f; // Starting energy
-    public float energyDecayRate = 10f; // Energy lost per second
+    public float energyDecayRate = 1f; // Energy lost per second
     public float energyReplenishRate = 5f; // Energy gained per action (optional)
 
     void Start()

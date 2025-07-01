@@ -9,15 +9,30 @@ and the player?
 
 
 
+
+
 objects being detected by the ripple effect sometimes dont turn to invisible again
 --the script used to turn the objects detected is the ripple script and the ripple object is destroyed before
 the detected objects are destroy, which basically destroy the script which stop it from turning invisible again
 
 
+
+
+error runtime
+NullReferenceException: Object reference not set to an instance of an object
+HiddenObject.Reveal () (at Assets/Scripts/HiddenObject.cs:21)
+it appears sometimes and sometimes not
+the error is from sprite renderer, it looks like sometime getcomponent returns null
+
+
+
+
+
+
 things to do
 fix visibility - done
 fix player route (clamp)- done
-implement the score system
-create text effect when scoring +1 +5 shining** glwing* 
+implement the score system - done(not sure)
+create text effect when scoring +1 +5 shining** glwing* - done
 sound effect
-generate level map
+generate level map - partial
