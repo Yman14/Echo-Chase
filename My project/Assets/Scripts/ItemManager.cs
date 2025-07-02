@@ -12,10 +12,7 @@ public class ItemManager : MonoBehaviour
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();   
-        if(collisionFx = FindAnyObjectByType<CollisionFX>(FindObjectsInactive.Include)) //the gamobject is inactive
-        {
-            Debug.Log("collision effect not found.");
-        }
+        collisionFx = FindAnyObjectByType<CollisionFX>(FindObjectsInactive.Include); //the gamobject is inactive
     }
 
      void OnCollisionEnter2D(Collision2D other)

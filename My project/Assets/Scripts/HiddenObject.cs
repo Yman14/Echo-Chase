@@ -10,7 +10,8 @@ public class HiddenObject : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Color currentColor = spriteRenderer.color;
+        
+        if(spriteRenderer == null){Destroy(gameObject);}
 
         Hide();
     }
