@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,20 +42,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool IsPositionValid(Vector3 position)
-    {
-        // Check if the position is within the path boundaries
-        // Adjust the boundaries dynamically based on your level design
-        float minX = -5f, maxX = 5f;
-        float minY = 0f, maxY = 10f;
+    // private bool IsPositionValid(Vector3 position)
+    // {
+    //     // Check if the position is within the path boundaries
+    //     // Adjust the boundaries dynamically based on your level design
+    //     float minX = -5f, maxX = 5f;
+    //     float minY = 0f, maxY = 10f;
 
-        return position.x >= minX && position.x <= maxX &&
-               position.y >= minY && position.y <= maxY;
-    }
+    //     return position.x >= minX && position.x <= maxX &&
+    //            position.y >= minY && position.y <= maxY;
+    // }
 
     private System.Collections.IEnumerator MoveToTarget()
     {
         isMoving = true;
+        //SFX
+        AudioManager.instance.PlaySFX(AudioManager.instance.moveSFX);
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
@@ -67,14 +70,32 @@ public class PlayerMovement : MonoBehaviour
         isMoving = false;
     }
 
+
     public void OnTap(InputValue value)
     {
         if (value.isPressed)
         {
-            Vector2 tapPosition = Pointer.current.position.ReadValue();
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(tapPosition.x, tapPosition.y, mainCamera.nearClipPlane));
-
-            Instantiate(ripplePrefab, worldPosition, Quaternion.identity);
+            StartCoroutine(HandleTapDelayed());
         }
+    }
+
+    private System.Collections.IEnumerator HandleTapDelayed()
+    {
+        //error:Calling IsPointerOverGameObject() from within event processing (such as from InputAction callbacks) will 
+        // not work as expected; it will query UI state from the last frame.
+        //apparently, so i need to wait so Unity has time to update the pointer state
+        yield return null; // wait one frame
+
+
+        //Check if tap is over UI
+        if (InputUtility.IsPointerOverUI())
+            yield break;// Block tap if it's over a UI element
+
+
+        Vector2 tapPosition = Pointer.current.position.ReadValue();
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(tapPosition.x, tapPosition.y, mainCamera.nearClipPlane));
+
+        //ripple effect when tapping the screen
+        Instantiate(ripplePrefab, worldPosition, Quaternion.identity);
     }
 }

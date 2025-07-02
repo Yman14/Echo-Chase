@@ -34,5 +34,7 @@ fix visibility - done
 fix player route (clamp)- done
 implement the score system - done(not sure)
 create text effect when scoring +1 +5 shining** glwing* - done
-sound effect
+sound effects - done
 generate level map - partial
+ui placeholder design
+obstacle logic

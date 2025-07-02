@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ItemManager : MonoBehaviour
 {
-    private GameManager gameManager;
+    private ScoreManager scoreManager;
     private CollisionFX collisionFx;
 
     public int points = 5;
@@ -11,7 +11,7 @@ public class ItemManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager = FindAnyObjectByType<GameManager>();   
+        scoreManager = FindAnyObjectByType<ScoreManager>();   
         collisionFx = FindAnyObjectByType<CollisionFX>(FindObjectsInactive.Include); //the gamobject is inactive
     }
 
@@ -19,8 +19,11 @@ public class ItemManager : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            //SFX
+            AudioManager.instance.PlaySFX(AudioManager.instance.collectibleSFX);
+
             Debug.Log("Item collided with player.");
-            gameManager.AddScore(points);
+            scoreManager.AddScore(points);
             collisionFx.ItemFx();
             Destroy(gameObject);
         }
