@@ -13,11 +13,54 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving = false; // Prevent overlapping moves
     private PathManager pathManager;
 
+    //swipe gesture
+    private Vector2 startTouchPosition, endTouchPosition;
+    private float swipeThreshold = 50f; // Adjust as needed
+
     void Start()
     {
         pathManager = FindAnyObjectByType<PathManager>();
         mainCamera = Camera.main; // Cache the main camera
         targetPosition = transform.position; // Initialize the target position
+    }
+
+    void Update()
+    {
+        if (Touchscreen.current == null || isMoving)
+            return;
+
+        var touch = Touchscreen.current.primaryTouch;
+
+
+        if (touch.press.wasPressedThisFrame)
+            startTouchPosition = touch.position.ReadValue();
+
+        if (touch.press.wasReleasedThisFrame)
+        {
+            endTouchPosition = touch.position.ReadValue();
+            Vector2 swipeDelta = endTouchPosition - startTouchPosition;
+
+            if (swipeDelta.magnitude > swipeThreshold)
+            {
+                Vector2 moveDir = Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y)
+                    ? (swipeDelta.x > 0 ? Vector2.right : Vector2.left)
+                    : (swipeDelta.y > 0 ? Vector2.up : Vector2.down);
+
+                AttemptMove(moveDir);
+            }
+        }
+    }
+
+    private void AttemptMove(Vector2 direction)
+    {
+        Vector3 moveVector = new Vector3(direction.x, direction.y, 0);
+        Vector3 newTarget = transform.position + moveVector;
+
+        if (pathManager.IsPositionValid(newTarget))
+        {
+            targetPosition = newTarget;
+            StartCoroutine(MoveToTarget());
+        }
     }
 
     public void OnMove(InputValue value)
@@ -42,16 +85,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // private bool IsPositionValid(Vector3 position)
-    // {
-    //     // Check if the position is within the path boundaries
-    //     // Adjust the boundaries dynamically based on your level design
-    //     float minX = -5f, maxX = 5f;
-    //     float minY = 0f, maxY = 10f;
-
-    //     return position.x >= minX && position.x <= maxX &&
-    //            position.y >= minY && position.y <= maxY;
-    // }
 
     private System.Collections.IEnumerator MoveToTarget()
     {

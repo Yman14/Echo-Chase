@@ -3,6 +3,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject pathTilePrefab;
+    public GameObject finalPathTilePrefab;
     public GameObject obstaclePrefab;
     public GameObject collectiblePrefab;
 
@@ -44,9 +45,15 @@ public class LevelGenerator : MonoBehaviour
             }
 
             // Add obstacles or collectibles (ensure logical placement)
+            if(row == 0)
+                continue;
             AddObstaclesOrCollectibles(currentPosition, previousPosition);
             previousPosition = currentPosition;
         }
+
+        //final path
+        Vector3 worldPosition = GridToWorldPosition(currentPosition);
+        Instantiate(finalPathTilePrefab, worldPosition, Quaternion.identity);
     }
 
     private void GenerateTile(Vector2Int gridPosition)

@@ -38,3 +38,8 @@ sound effects - done
 generate level map - partial
 ui placeholder design
 obstacle logic
+
+
+ripple when move
+fix this pls
+just need a swipethreshold and max tap duration to differentiate between tap and swipe
